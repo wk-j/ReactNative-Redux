@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { store } from './App';
 
-export class ProfileScreen extends Component {
+export default class ProfileScreen extends Component {
     constructor() {
         super();
         this.state = {chen: ""}
+        console.log(store.getState());
     }
 
     componentDidMount() {
@@ -12,7 +14,17 @@ export class ProfileScreen extends Component {
     }
     render() {
         return (
-            <Text>{this.state.chen}</Text>
+            <View>
+                <Text>{this.state.chen}</Text>
+                <Text>{this.props.username}</Text>
+            </View>
         );
+    }
+}
+
+const mapStatetoProps = (state) => {
+    return {
+        user: state.user,
+        emp: state.emp,
     }
 }

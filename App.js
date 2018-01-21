@@ -12,9 +12,11 @@ import {
   View,
   Button
 } from 'react-native';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, combineReducers} from 'redux';
+import { Provider } from 'react-redux';
 import {StackNavigator} from 'react-navigation';
-import { ProfileScreen } from './Profile';
+import Main from './Main';
+import ProfileScreen from './Profile';
 
 const initialState = {
   result: 15000,
@@ -61,36 +63,15 @@ const employeeReducer = (state=initialState, action) => {
   return state;
 }
 
-const store = createStore(combineReducers({employeeReducer, userReducer}));
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export const store = createStore(combineReducers({emp: employeeReducer, user: userReducer}));
 
 export class App extends Component {
 
-  constructor() {
-    super();
-    this.state = { chen : "ที่ีนี้หน้า 1" }
-  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-        <Text>{this.state.chen}</Text>
-        <Button title="Go to Profile Screen" onPress={() => this.props.navigation.navigate("Profile")} />
-      </View>
+      <Provider store={store}>
+        <Main navigation={this.props.navigation}/>
+      </Provider>
     );
   }
 
@@ -99,14 +80,14 @@ export class App extends Component {
       console.log("Update Store: ", store.getState());
     });
     
-    store.dispatch({
+    /*store.dispatch({
       type: "ADD",
       payload:15000
     })
     store.dispatch({
       type: "setName",
       payload: "Worameth"
-    })
+    })*/
   }
 }
 
