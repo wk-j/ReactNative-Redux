@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
+import Profile from './Profile';
 
 export class MainScreen extends Component {
 
@@ -11,9 +12,10 @@ export class MainScreen extends Component {
     render() {
         return (
             <View>
-                <Button title="ไปหน้า Profile" onPress={() => this.props.navigation.navigate("Profile", this.props)} />
+                <Button title="ไปหน้า Profile" onPress={() => this.props.navigation.navigate("Profile")} />
                 <Text>My name is {this.props.user.name}</Text>
                 <Button title="change name" onPress={() => this.props.setName("Worameth Semapat") }/>
+                <Text>{this.props.test}</Text>
             </View>
         );
     }
@@ -39,4 +41,4 @@ const mapDispatchtoProps = (dispatch) => {
     }
 } 
 
-export default connect(mapStatetoProps,mapDispatchtoProps)(MainScreen);
+export default Main = connect(mapStatetoProps,mapDispatchtoProps)(MainScreen);

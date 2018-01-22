@@ -16,7 +16,7 @@ import {createStore, combineReducers} from 'redux';
 import { Provider } from 'react-redux';
 import {StackNavigator} from 'react-navigation';
 import Main from './Main';
-import ProfileScreen from './Profile';
+import { ProfileScreen } from './Profile';
 
 const initialState = {
   result: 15000,
