@@ -14,7 +14,7 @@ export class MainScreen extends Component {
             <View>
                 <Button title="ไปหน้า Profile" onPress={() => this.props.navigation.navigate("Profile")} />
                 <Text>My name is {this.props.user.name}</Text>
-                <Button title="change name" onPress={() => this.props.setName("Worameth Semapat") }/>
+                <Button title="change name" onPress={() => this.props.setName("Worameth Semapat")} />
                 <Text>{this.props.test}</Text>
             </View>
         );
@@ -27,7 +27,7 @@ const mapStatetoProps = (state) => {
         emp: state.emp,
 
     }
-} 
+}
 
 const mapDispatchtoProps = (dispatch) => {
     return {
@@ -39,6 +39,6 @@ const mapDispatchtoProps = (dispatch) => {
         }
 
     }
-} 
+}
 
-export default Main = connect(mapStatetoProps,mapDispatchtoProps)(MainScreen);
+export const Main = connect(mapStatetoProps, mapDispatchtoProps)(MainScreen);

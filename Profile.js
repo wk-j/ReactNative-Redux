@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { store } from './App';
 import { connect } from 'react-redux';
-import { Main } from './Main';
+// import { Main } from './Main';
 
 export class ProfileScreen extends Component {
     constructor() {
         super();
-        this.state = {chen: ""}
+        this.state = { chen: "" }
         console.log(store.getState());
     }
 
     componentDidMount() {
-        this.setState({chen: "ที่นี้หน้า 2"});
+        this.setState({ chen: "ที่นี้หน้า 2" });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -28,11 +28,9 @@ export class ProfileScreen extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    return {
-        user: state.user,
-        emp: state.emp,
-    }
-}
+const mapStatetoProps = (state) => ({
+    user: state.user,
+    emp: state.emp,
+});
 
-//export const Profile = connect(mapStatetoProps)(ProfileScreen)
+export const Profile = connect(mapStatetoProps)(ProfileScreen)

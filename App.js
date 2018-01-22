@@ -12,18 +12,18 @@ import {
   View,
   Button
 } from 'react-native';
-import {createStore, combineReducers} from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import {StackNavigator} from 'react-navigation';
-import Main from './Main';
-import { ProfileScreen } from './Profile';
+import { StackNavigator } from 'react-navigation';
+import { Main, MainScreen } from './Main';
+import { Profile, ProfileScreen } from './Profile';
 
 const initialState = {
   result: 15000,
   value: []
 }
 
-const userReducer = (state={name: "Chen", age: 14}, action) => {
+const userReducer = (state = { name: "Chen", age: 14 }, action) => {
   switch (action.type) {
     case "setName":
       state = {
@@ -32,45 +32,45 @@ const userReducer = (state={name: "Chen", age: 14}, action) => {
       }
       break;
     case "setAge":
-    state = {
-      ...state,
-      age: action.payload
-    }
+      state = {
+        ...state,
+        age: action.payload
+      }
       break;
     default:
-      
+
   }
   return state;
 }
 
-const employeeReducer = (state=initialState, action) => {
+const employeeReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD":
       state = {
-        result: state.result+=action.payload,
+        result: state.result += action.payload,
         value: [...state.value, action.payload]
       }
       break;
     case "SUBTRACT":
-    state = {
-      result: state.result-=action.payload,
-      value: [...state.value, action.payload]
-    }
+      state = {
+        result: state.result -= action.payload,
+        value: [...state.value, action.payload]
+      }
       break;
     default:
-      
+
   }
   return state;
 }
 
-export const store = createStore(combineReducers({emp: employeeReducer, user: userReducer}));
+export const store = createStore(combineReducers({ emp: employeeReducer, user: userReducer }));
 
 export class App extends Component {
 
   render() {
     return (
       <Provider store={store}>
-        <Main navigation={this.props.navigation}/>
+        <Main navigation={this.props.navigation} />
       </Provider>
     );
   }
@@ -79,7 +79,7 @@ export class App extends Component {
     store.subscribe(() => {
       console.log("Update Store: ", store.getState());
     });
-    
+
     /*store.dispatch({
       type: "ADD",
       payload:15000
@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
 });
 
 export const Route = StackNavigator({
-  Main: {screen: App},
-  Profile: {screen: ProfileScreen},
+  Main: { screen: App },
+  Profile: { screen: Profile },
 });
 
 export default Route;
